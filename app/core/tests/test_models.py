@@ -41,3 +41,13 @@ class ModelTests(TestCase):
         """Creating a user w/o an email raises a ValueError."""
         with self.assertRaises(ValueError):
             get_user_model().objects.create_user(email='', password='1234')
+
+    def test_create_superuser(self):
+        # .create_superuser() will be defined in `models.py` in `UserManager` class.
+        user = get_user_model().objects.create_superuser(
+            email='admin@example.com',
+            password='this_is_superuser!!!'
+        )
+        # `is_superuser` & `is_staff` are provided by PermissionsMixin:
+        self.assertTrue(user.is_superuser)
+        self.assertTrue(user.is_staff)
