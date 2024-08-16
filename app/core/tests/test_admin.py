@@ -34,7 +34,6 @@ class AdminSiteTests(TestCase):
         # Get the URL for the page that shows the list of users.
         url = reverse('admin:core_user_changelist')
         res = self.client.get(url)   # admin will login; as we forced login above.
-        print('=====================> ', res)
         self.assertContains(res, self.user.name)
         self.assertContains(res, self.user.email)
 
